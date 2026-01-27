@@ -11,7 +11,7 @@ endif
 CXX = g++
 CXXFLAGS = -Wall -g
 TARGET = main
-SRCS = main.cpp value.cpp
+SRCS = main.cpp value.cpp neuron.cpp layer.cpp activation.cpp tensor.cpp mlp.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(TARGET)
