@@ -55,6 +55,6 @@ run: $(TARGET)
 	$(TARGET)$(TARGET_EXT)
 
 clean:
-	$(RM) $(TARGET)$(TARGET_EXT) $(OBJS) $(SPV_SHADERS)
+	$(RM) $(TARGET)$(TARGET_EXT) $(OBJS) 
 
 .PHONY: all run clean
