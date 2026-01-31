@@ -23,26 +23,38 @@ GLM_INC = -I C:/glm-1.0.3
 
 WIN_LIBS = -lgdi32 -luser32 -lkernel32
 
+GLSLC = C:\VulkanSDK\1.4.335.0\Bin\glslc.exe 
+
 TARGET = main
-SRCS = main.cpp lve_window.cpp first_app.cpp
+SRCS = main.cpp lve_window.cpp lve_pipeline.cpp lve_device.cpp lve_swap_chain.cpp first_app.cpp
 OBJS = $(SRCS:.cpp=.o)
 
+VERT_SHADERS := $(wildcard shaders/*.vert)
+FRAG_SHADERS := $(wildcard shaders/*.frag)
+
+SPV_SHADERS := $(VERT_SHADERS:.vert=.vert.spv) $(FRAG_SHADERS:.frag=.frag.spv)
 
 INCLUDES = $(VULKAN_INC) $(GLFW_INC) $(GLM_INC)
 LIBS = $(VULKAN_LIB) $(GLFW_LIB) $(WIN_LIBS)
 
 all: $(TARGET)
 
-$(TARGET): $(OBJS)
+$(TARGET): $(SPV_SHADERS) $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS) $(LIBS)
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
+%.vert.spv: %.vert
+	$(GLSLC) $< -o $@
+
+%.frag.spv: %.frag
+	$(GLSLC) $< -o $@
+
 run: $(TARGET)
 	$(TARGET)$(TARGET_EXT)
 
 clean:
-	$(RM) $(TARGET)$(TARGET_EXT) $(OBJS)
+	$(RM) $(TARGET)$(TARGET_EXT) $(OBJS) $(SPV_SHADERS)
 
 .PHONY: all run clean
