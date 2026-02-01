@@ -1,6 +1,7 @@
 #pragma once
 
 #include "lve_device.hpp"
+#include "lve_model.hpp"
 
 #include <string>
 #include <vector>
@@ -30,7 +31,7 @@ namespace lve
       ~LvePipeline();
 
       LvePipeline(const LvePipeline&) = delete;
-      void operator=(const LvePipeline&) = delete;
+      LvePipeline& operator=(const LvePipeline&) = delete;
 
       void bind(VkCommandBuffer commandBuffer);
       static PipelineConfigInfo defaultPipelineConfigInfo(uint32_t width, uint32_t height);
