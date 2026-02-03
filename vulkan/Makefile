@@ -26,7 +26,7 @@ WIN_LIBS = -lgdi32 -luser32 -lkernel32
 GLSLC = C:\VulkanSDK\1.4.335.0\Bin\glslc.exe 
 
 TARGET = main
-SRCS = main.cpp lve_window.cpp lve_pipeline.cpp lve_device.cpp lve_swap_chain.cpp lve_model.cpp lve_game_object.cpp first_app.cpp
+SRCS = main.cpp lve_window.cpp lve_pipeline.cpp lve_device.cpp lve_swap_chain.cpp lve_model.cpp lve_game_object.cpp lve_renderer.cpp simple_render_system.cpp first_app.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 VERT_SHADERS := $(wildcard shaders/*.vert)
